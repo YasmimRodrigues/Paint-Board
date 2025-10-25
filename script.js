@@ -4,20 +4,20 @@ let canDraw = false;
 let mouseX = 0;
 let mouseY = 0;
 
-let screen = document.querySelector('#tela');
-let ctx = screen.getContext('2d');
+let canvas = document.querySelector('#canvas');
+let ctx = canvas.getContext('2d');
 
 // Events
 document.querySelectorAll('.colorArea .color').forEach(item => {
-    item.addEventListener('click', colorClickEvent);
+    item.addEventListener('click', handleColorClick);
 });
-screen.addEventListener('mousedown', mouseDownEvent);
-screen.addEventListener('mousemove', mouseMoveEvent);
-screen.addEventListener('mouseup', mouseUpEvent);
-document.querySelector('.clear').addEventListener('click', clearScreen);
+canvas.addEventListener('mousedown', handleMouseDown);
+canvas.addEventListener('mousemove', handleMouseMove);
+canvas.addEventListener('mouseup', handleMouseUp);
+document.querySelector('.clear').addEventListener('click', clearCanvas);
 
 // Functions
-function colorClickEvent(e) {
+function handleColorClick(e) {
     let color = e.target.getAttribute('data-color');
     currentColor = color;
 
@@ -25,25 +25,25 @@ function colorClickEvent(e) {
     e.target.classList.add('active');
 }
 
-function mouseDownEvent(e) {
+function handleMouseDown(e) {
     canDraw = true;
-    mouseX = e.pageX - screen.offsetLeft;
-    mouseY = e.pageY - screen.offsetTop;
+    mouseX = e.pageX - canvas.offsetLeft;
+    mouseY = e.pageY - canvas.offsetTop;
 }
 
-function mouseMoveEvent(e) {
-    if(canDraw) {
+function handleMouseMove(e) {
+    if (canDraw) {
         draw(e.pageX, e.pageY);
     }
 }
 
-function mouseUpEvent() {
+function handleMouseUp() {
     canDraw = false;
 }
 
 function draw(x, y) {
-    let pointX = x - screen.offsetLeft;
-    let pointY = y - screen.offsetTop;
+    let pointX = x - canvas.offsetLeft;
+    let pointY = y - canvas.offsetTop;
 
     ctx.beginPath();
     ctx.lineWidth = 5;
@@ -58,7 +58,7 @@ function draw(x, y) {
     mouseY = pointY;
 }
 
-function clearScreen() {
+function clearCanvas() {
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 }
