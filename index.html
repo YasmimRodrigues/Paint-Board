@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Drawing on Canvas</title>
+    <title>Drawing Board</title>
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <h1>Drawing on Canvas</h1>
+    <h1>🎨 Drawing Board</h1>
 
     <canvas id="canvas" width="800" height="400"></canvas>
 
@@ -21,9 +21,26 @@
         <div data-color="gray" style="background-color: gray" class="color"></div>
     </div>
 
-    <button class="clear">Clear Board</button>
 
-    <footer>Created by yasmimrbm25</footer>
+    <div class="color-picker">
+        <label for="colorPicker">Custom Color:</label>
+        <input type="color" id="colorPicker" value="#000000">
+    </div>
+
+   
+    <div class="brush-controls">
+        <label for="brushSize">Brush Size:</label>
+        <input type="range" id="brushSize" min="1" max="30" value="5">
+        <span id="brushValue">5px</span>
+    </div>
+
+    
+    <button class="eraser">🧽 Eraser</button>
+
+    
+    <button class="clear">🧹 Clear Canvas</button>
+
+    <footer>Created by <strong>Yasmim Rodrigues</strong></footer>
 
     <script src="script.js"></script>
 </body>
